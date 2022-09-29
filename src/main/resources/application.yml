@@ -1,0 +1,48 @@
+server:
+  port: ${APPLICATION_PORT}
+  error:
+    whitelabel:
+      enabled: false
+
+spring:
+  application:
+    name: MultiService
+  output:
+    ansi:
+      enabled: DETECT
+  datasource:
+    url: jdbc:h2:file:./data/db/multiservice    
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  h2:
+    console.enabled: true
+  jpa.database-platform: org.hibernate.dialect.H2Dialect
+
+
+info:
+  java-vendor: ${java.specification.vendor}
+  java-runtime-name: ${java.runtime.name}
+  java-runtime-version: ${java.runtime.version}
+
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: '*'
+      base-path: /autos/siniestro/actuator
+  endpoint:
+    health:
+      enabled: true
+    info:
+      enabled: true
+    env:
+      enabled: true
+    logfile:
+      enabled: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: INFO
