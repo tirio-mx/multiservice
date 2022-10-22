@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import mx.tirio.app.multiservice.MultiserviceApplication;
-import mx.tirio.app.multiservice.dispatcher.application.MainController;
 import mx.tirio.app.multiservice.dispatcher.application.model.HttpStatus;
 
 @SpringBootTest(classes = { MultiserviceApplication.class })

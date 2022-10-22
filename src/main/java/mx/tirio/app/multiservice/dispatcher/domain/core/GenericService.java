@@ -14,8 +14,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
+import mx.tirio.app.multiservice.common.domain.MultiserviceException;
 import mx.tirio.app.multiservice.dispatcher.infraestructure.GenericServiceClient;
-import mx.tirio.app.multiservice.model.MultiserviceException;
 
 /**
  * 
