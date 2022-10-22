@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: ${JDBC_DB_URL}
+    driverClassName: ${JDBC_DB_DRIVER}
+    username: ${JDBC_DB_USERNAME}
+    password: ${JDBC_DB_PASSWORD}
+  jpa.database-platform: ${JPA_DIALECT}
+

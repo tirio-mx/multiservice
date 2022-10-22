@@ -8,7 +8,7 @@ import lombok.Setter;
 /**
  * Format exception.
  * 
- * @author Axis.
+ * @author Gerardo Corsan.
  *
  */
 @Getter
