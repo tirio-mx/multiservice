@@ -1,4 +1,4 @@
-package mx.com.interware.msr.controller;
+package mx.tirio.app.multiservice.dispatcher.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
