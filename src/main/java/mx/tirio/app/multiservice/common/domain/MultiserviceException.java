@@ -1,4 +1,4 @@
-package mx.tirio.app.multiservice.model;
+package mx.tirio.app.multiservice.common.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
