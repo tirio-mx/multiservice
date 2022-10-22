@@ -1,0 +1,9 @@
+spring:
+  datasource:
+#    url: jdbc:h2:file:./data/db/multiservice
+    url: ${JDBC_DB_URL}
+    driverClassName: ${JDBC_DB_DRIVER}
+    username: ${JDBC_DB_USERNAME}
+    password: ${JDBC_DB_PASSWORD}
+  jpa.database-platform: ${JPA_DIALECT}
+

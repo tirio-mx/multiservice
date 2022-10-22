@@ -1,7 +1,7 @@
-package mx.tirio.app.multiservice.model;
+package mx.tirio.app.multiservice.dispatcher.application.model;
 
 /**
- * @author Axis
+ * @author Gerardo Corsan
  *
  */
 public final class HttpStatus {
