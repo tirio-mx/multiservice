@@ -5,6 +5,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import mx.tirio.app.multiservice.common.domain.MultiserviceException;
+import mx.tirio.app.multiservice.dispatcher.domain.model.ServiceDTO;
+import mx.tirio.app.multiservice.dispatcher.domain.output.ServiceStorePort;
 import mx.tirio.app.multiservice.dispatcher.infraestructure.GenericServiceClient;
 
 /**
@@ -38,6 +41,12 @@ public class GenericService {
      */
     @Autowired
     private GenericServiceClient genericClient;
+
+    /**
+     * Output port ServiceStorePort.
+     */
+    @Autowired
+    private ServiceStorePort serviceStore;
 
     /**
      * Used to get services data.
@@ -106,6 +115,7 @@ public class GenericService {
 
         if (serviceDataDir.exists()) {
             try {
+                List<ServiceDTO> services = serviceStore.getServiceList();
                 File[] files = serviceDataDir.listFiles(new FilenameFilter() {
                     public boolean accept(final File dir, final String name) {
                         return name.toLowerCase().endsWith(".json");
