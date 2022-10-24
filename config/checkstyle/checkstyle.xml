@@ -21,10 +21,9 @@ Slightly modified version of Sun Checks that better matches the default code for
   </module>
   <module name="TreeWalker">
     <property name="tabWidth" value="4"/>
-    <module name="JavadocMethod">
-      <property name="suppressLoadErrors" value="true"/>
-    </module>
+    <module name="JavadocMethod"/>
     <module name="JavadocType"/>
+    <module name="JavadocVariable" />
     <module name="JavadocStyle"/>
     <module name="ConstantName"/>
     <module name="LocalFinalVariableName"/>
@@ -72,6 +71,7 @@ Slightly modified version of Sun Checks that better matches the default code for
     <module name="SimplifyBooleanReturn"/>
     <module name="DesignForExtension"/>
     <module name="FinalClass"/>
+    <module name="HideUtilityClassConstructor" />
     <module name="InterfaceIsType"/>
     <module name="VisibilityModifier"/>
     <module name="ArrayTypeStyle"/>
@@ -81,6 +81,7 @@ Slightly modified version of Sun Checks that better matches the default code for
       <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
     <module name="UpperEll"/>
+    <module name="SuppressWarningsHolder" />
   </module>
   <module name="NewlineAtEndOfFile">
     <property name="severity" value="ignore"/>
