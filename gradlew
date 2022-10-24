@@ -1,4 +1,6 @@
 #!/bin/sh
+# Application environment variables needed for runnigns tests
+export APPLICATION_PORT=4080
 
 #
 # Copyright © 2015-2021 the original authors.

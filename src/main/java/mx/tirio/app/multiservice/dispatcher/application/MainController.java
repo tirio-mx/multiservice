@@ -16,10 +16,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import mx.tirio.app.multiservice.common.domain.MultiserviceException;
 import mx.tirio.app.multiservice.dispatcher.domain.core.GenericService;
 
 /**
+ * Main Multiservice application controller.
  * 
  * @author Gerardo Corsan
  *
@@ -30,23 +30,23 @@ import mx.tirio.app.multiservice.dispatcher.domain.core.GenericService;
 @Tag(name = "multiservice")
 public class MainController {
 
+    /**
+     * Attribute service.
+     */
     @Autowired
     private GenericService service;
 
     /**
-     * MultiService main endpoint.
+     * MultiService main endpoint for GET calls.
      * 
-     * @param serviceId .
-     * @return Something
+     * @param serviceId service identifier.
+     * @return Service data.
      */
     @Operation(summary = "Generic GET")
     @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "" + HttpStatus.SC_ACCEPTED,
-                    description = "Generic service GET call"),
-            @ApiResponse(
-                    responseCode = "" + HttpStatus.SC_BAD_REQUEST,
-                    description = "An error ocurred while calling (Generic GET).")
+            @ApiResponse(responseCode = "" + HttpStatus.SC_ACCEPTED, description = "Generic service GET call"),
+            @ApiResponse(responseCode = ""
+                    + HttpStatus.SC_BAD_REQUEST, description = "An error ocurred while calling (Generic GET).")
     })
     @ResponseStatus(value = org.springframework.http.HttpStatus.ACCEPTED)
     @RequestMapping(value = "/multiservice/service/{serviceId}",
@@ -60,19 +60,17 @@ public class MainController {
     }
 
     /**
-     * MultiService main endpoint.
+     * MultiService main endpoint for PUT calls.
      * 
-     * @param serviceId .
-     * @return Something
+     * @param serviceId service identifier.
+     * @param body rquest body.
+     * @return Service data.
      */
     @Operation(summary = "Generic PUT")
     @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "" + HttpStatus.SC_ACCEPTED,
-                    description = "Generic service PUT call"),
-            @ApiResponse(
-                    responseCode = "" + HttpStatus.SC_BAD_REQUEST,
-                    description = "An error ocurred while calling (Generic PUT).")
+            @ApiResponse(responseCode = "" + HttpStatus.SC_ACCEPTED, description = "Generic service PUT call"),
+            @ApiResponse(responseCode = ""
+                    + HttpStatus.SC_BAD_REQUEST, description = "An error ocurred while calling (Generic PUT).")
     })
     @ResponseStatus(value = org.springframework.http.HttpStatus.ACCEPTED)
     @RequestMapping(value = "/multiservice/service/{serviceId}",
@@ -86,19 +84,17 @@ public class MainController {
     }
 
     /**
-     * MultiService main endpoint.
+     * MultiService main endpoint for POST calls.
      * 
-     * @param serviceId .
-     * @return Something
+     * @param serviceId service identifier.
+     * @param body rquest body.
+     * @return Service data.
      */
     @Operation(summary = "Generic POST")
     @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "" + HttpStatus.SC_ACCEPTED,
-                    description = "Generic service POST call"),
-            @ApiResponse(
-                    responseCode = "" + HttpStatus.SC_BAD_REQUEST,
-                    description = "An error ocurred while calling (Generic POST).")
+            @ApiResponse(responseCode = "" + HttpStatus.SC_ACCEPTED, description = "Generic service POST call"),
+            @ApiResponse(responseCode = ""
+                    + HttpStatus.SC_BAD_REQUEST, description = "An error ocurred while calling (Generic POST).")
     })
     @ResponseStatus(value = org.springframework.http.HttpStatus.ACCEPTED)
     @RequestMapping(value = "/multiservice/service/{serviceId}",
@@ -112,47 +108,16 @@ public class MainController {
     }
 
     /**
-     *
-     * @param serviceId
-     * @param body
-     * @return
-     * @throws MultiserviceException
-     */
-    @Operation(summary = "Generic TEST")
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "" + HttpStatus.SC_ACCEPTED,
-                    description = "Generic service TEST call"),
-            @ApiResponse(
-                    responseCode = "" + HttpStatus.SC_BAD_REQUEST,
-                    description = "An error ocurred while calling (Generic TEST).")
-    })
-    @ResponseStatus(value = org.springframework.http.HttpStatus.ACCEPTED)
-    @RequestMapping(value = "/multiservice/test/{serviceId}",
-            produces = "application/json",
-            method = {
-                    RequestMethod.GET,
-                    RequestMethod.PUT,
-                    RequestMethod.POST })
-    public final ResponseEntity<String> executeTestService(
-            @PathVariable("serviceId") final String serviceId,
-            @RequestBody(required = false) final String body) {
-        log.info("Calling test service: {}. Body: {}", serviceId, body);
-        return ResponseEntity.ok(service.getServiceData(serviceId));
-    }
-
-    /**
+     * MultiService endpoint to get service list.
      * 
-     * @return
+     * @return Service list.
      */
     @Operation(summary = "Service list")
     @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "" + HttpStatus.SC_ACCEPTED,
-                    description = "Returns the list of registered services"),
-            @ApiResponse(
-                    responseCode = "" + HttpStatus.SC_BAD_REQUEST,
-                    description = "An error ocurred while calling (Service list).")
+            @ApiResponse(responseCode = ""
+                    + HttpStatus.SC_ACCEPTED, description = "Returns the list of registered services"),
+            @ApiResponse(responseCode = ""
+                    + HttpStatus.SC_BAD_REQUEST, description = "An error ocurred while calling (Service list).")
     })
     @ResponseStatus(value = org.springframework.http.HttpStatus.ACCEPTED)
     @RequestMapping(value = "/multiservice/list",

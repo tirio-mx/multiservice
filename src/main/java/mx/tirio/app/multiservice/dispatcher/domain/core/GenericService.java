@@ -18,6 +18,7 @@ import mx.tirio.app.multiservice.common.domain.MultiserviceException;
 import mx.tirio.app.multiservice.dispatcher.infraestructure.GenericServiceClient;
 
 /**
+ * Used to get service data.
  * 
  * @author Gerardo Corsan
  *
@@ -26,18 +27,24 @@ import mx.tirio.app.multiservice.dispatcher.infraestructure.GenericServiceClient
 @Slf4j
 public class GenericService {
 
+    /**
+     * Attibute enviroment.
+     */
     @Autowired
     private Environment enviroment;
 
+    /**
+     * Attibute genericClient.
+     */
     @Autowired
     private GenericServiceClient genericClient;
 
     /**
-     * Main service
+     * Used to get services data.
      * 
-     * @param serviceId .
-     * @return .
-     * @throws MultiserviceException .
+     * @param serviceId Service identifier.
+     * @return Data for the requested service.
+     * @throws MultiserviceException if error occurs.
      */
     public String getServiceData(final String serviceId) {
         log.info("enviroment: {}", enviroment);
@@ -59,6 +66,13 @@ public class GenericService {
         return fileData;
     }
 
+    /**
+     * Used to get services test data.
+     * 
+     * @param serviceId Service identifier.
+     * @return Data for the requested service.
+     * @throws MultiserviceException if error occurs.
+     */
     public String testService(final String serviceId) {
         log.info("enviroment: {}", enviroment);
 
@@ -79,6 +93,12 @@ public class GenericService {
         return fileData;
     }
 
+    /**
+     * Used to get services list.
+     * 
+     * @return JSON Strinf for the list of services.
+     * @throws MultiserviceException if error occurs.
+     */
     public String listServices() {
         log.info("Getting list of services ...");
         File serviceDataDir = new File("./data/responses");
@@ -87,7 +107,7 @@ public class GenericService {
         if (serviceDataDir.exists()) {
             try {
                 File[] files = serviceDataDir.listFiles(new FilenameFilter() {
-                    public boolean accept(File dir, String name) {
+                    public boolean accept(final File dir, final String name) {
                         return name.toLowerCase().endsWith(".json");
                     }
                 });
