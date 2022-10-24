@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import mx.tirio.app.multiservice.MultiserviceApplication;
 import mx.tirio.app.multiservice.common.application.ControllerTestUtil;
 import mx.tirio.app.multiservice.dispatcher.domain.core.GenericService;
+import mx.tirio.app.multiservice.dispatcher.domain.output.ServiceStorePort;
 
 /**
  * Unit tests for MainController.
@@ -43,6 +44,12 @@ public class MainControllerTest {
      */
     @Mock
     private GenericService genericService;
+
+    /**
+     * Mock serviceStorePort.
+     */
+    @Mock
+    private ServiceStorePort serviceStorePort;
 
     /**
      * Utillty for testing controllers.

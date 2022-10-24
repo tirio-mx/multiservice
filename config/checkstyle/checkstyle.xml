@@ -39,7 +39,9 @@ Slightly modified version of Sun Checks that better matches the default code for
     <module name="RedundantImport"/>
     <module name="UnusedImports"/>
     <module name="MethodLength"/>
-    <module name="ParameterNumber"/>
+    <module name="ParameterNumber">
+      <property name="max" value="9"/>
+    </module>
     <module name="EmptyForIteratorPad"/>
     <module name="GenericWhitespace"/>
     <module name="MethodParamPad"/>
