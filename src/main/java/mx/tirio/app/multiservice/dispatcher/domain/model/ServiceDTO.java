@@ -19,7 +19,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class ServiceDTO extends BaseFactDTO {
+public class ServiceDTO extends BaseRecordDTO {
 
     /**
      * Attribute serialVersionUID.
