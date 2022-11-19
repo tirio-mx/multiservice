@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @MappedSuperclass
 @EqualsAndHashCode
-public class BaseFactDTO implements Serializable {
+public class BaseRecordDTO implements Serializable {
 
     /**
      * Attribute serialVersionUID.

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 import mx.tirio.app.multiservice.dispatcher.domain.model.ServiceDTO;
 import mx.tirio.app.multiservice.dispatcher.domain.model.ServiceTypeDTO;
 import mx.tirio.app.multiservice.dispatcher.domain.output.ServiceStorePort;
+import mx.tirio.app.multiservice.dispatcher.infraestructure.model.ServiceEntity;
+import mx.tirio.app.multiservice.dispatcher.infraestructure.model.ServiceTypeEntity;
 
 /**
  * JPA Adapter used to access ServiceRepository.
@@ -27,6 +29,34 @@ public class ServiceAdapter implements ServiceStorePort {
     private ServiceRepository serviceRepository;
 
     /**
+     * Used to convert service type entity into DTO.
+     * 
+     * @param entity service type entity
+     * @return service type DTO
+     */
+    private ServiceTypeDTO serviceTypeEntityToDto(final ServiceTypeEntity entity) {
+        ServiceTypeDTO serviceType = new ServiceTypeDTO();
+        BeanUtils.copyProperties(entity, serviceType);
+
+        return serviceType;
+    }
+
+    /**
+     * Used to convert service entity into DTO.
+     * 
+     * @param entity service entity
+     * @return service DTO
+     */
+    private ServiceDTO serviceEntityToDto(final ServiceEntity entity) {
+        ServiceTypeDTO serviceType = serviceTypeEntityToDto(entity.getServiceType());
+        ServiceDTO service = ServiceDTO.builder().build();
+        BeanUtils.copyProperties(entity, service);
+        service.setServiceType(serviceType);
+
+        return service;
+    }
+
+    /**
      * Retrieve a list of services.
      * 
      * @return the list of services.
@@ -34,11 +64,7 @@ public class ServiceAdapter implements ServiceStorePort {
     public List<ServiceDTO> getServiceList() {
         List<ServiceDTO> services = StreamSupport.stream(serviceRepository.findAll().spliterator(), false)
                 .map(entity -> {
-                    ServiceTypeDTO serviceType = ServiceTypeDTO.builder().build();
-                    BeanUtils.copyProperties(entity.getServiceType(), serviceType);
-                    ServiceDTO service = ServiceDTO.builder().build();
-                    BeanUtils.copyProperties(entity, service);
-                    service.setServiceType(serviceType);
+                    ServiceDTO service = serviceEntityToDto(entity);
                     return service;
                 }).collect(Collectors.toList());
 

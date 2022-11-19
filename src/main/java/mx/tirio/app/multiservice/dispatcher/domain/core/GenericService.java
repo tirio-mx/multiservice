@@ -1,13 +1,10 @@
 package mx.tirio.app.multiservice.dispatcher.domain.core;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import mx.tirio.app.multiservice.common.domain.MultiserviceException;
+import mx.tirio.app.multiservice.dispatcher.domain.input.ServiceLogic;
 import mx.tirio.app.multiservice.dispatcher.domain.model.ServiceDTO;
 import mx.tirio.app.multiservice.dispatcher.domain.output.ServiceStorePort;
 import mx.tirio.app.multiservice.dispatcher.infraestructure.GenericServiceClient;
@@ -28,7 +26,7 @@ import mx.tirio.app.multiservice.dispatcher.infraestructure.GenericServiceClient
  */
 @Service
 @Slf4j
-public class GenericService {
+public class GenericService implements ServiceLogic {
 
     /**
      * Attibute enviroment.
@@ -43,7 +41,7 @@ public class GenericService {
     private GenericServiceClient genericClient;
 
     /**
-     * Output port ServiceStorePort.
+     * Output port ServiceLogic.
      */
     @Autowired
     private ServiceStorePort serviceStore;
@@ -105,34 +103,20 @@ public class GenericService {
     /**
      * Used to get services list.
      * 
-     * @return JSON Strinf for the list of services.
+     * @return list of services.
      * @throws MultiserviceException if error occurs.
      */
-    public String listServices() {
+    public List<ServiceDTO> getServiceList() throws MultiserviceException {
         log.info("Getting list of services ...");
-        File serviceDataDir = new File("./data/responses");
-        String result = null;
 
-        if (serviceDataDir.exists()) {
-            try {
-                List<ServiceDTO> services = serviceStore.getServiceList();
-                File[] files = serviceDataDir.listFiles(new FilenameFilter() {
-                    public boolean accept(final File dir, final String name) {
-                        return name.toLowerCase().endsWith(".json");
-                    }
-                });
-                Stream<File> stream = Arrays.stream(files);
-                result = stream
-                        .map(file -> "\"" + file.getName().substring(0, file.getName().lastIndexOf('.')) + "\"")
-                        .collect(Collectors.joining(",\n", "{\"services\":\n[\n", "]\n}"));
-            } catch (Exception e) {
-                throw new MultiserviceException(e);
-            }
-        } else {
-            throw new MultiserviceException("No response found.");
+        List<ServiceDTO> services = new LinkedList<>();
+        try {
+            services = serviceStore.getServiceList();
+        } catch (Exception e) {
+            throw new MultiserviceException(e);
         }
 
-        return result;
+        return services;
     }
 
 }
