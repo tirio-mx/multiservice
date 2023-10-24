@@ -79,9 +79,9 @@ sonarqube {
     properties {
         property "sonar.buildbreaker.skip" , "false"
         property "sonar.exclusions", 
-                 "**Application**, **HttpExceptionHandler**, **ExceptionFormat**, **ValidatorUtils**, **mx/com/interware/msr/model/**, **mx/com/interware/msr/config/**"
+                 "**Application**, **HttpExceptionHandler**, **ExceptionFormat**, **ValidatorUtils**, **/model/**, **/config/**"
         property "sonar.coverage.exclusions", 
-                 "**Application**, **HttpExceptionHandler**, **ExceptionFormat**, **ValidatorUtils**, **mx/com/interware/msr/model/**, **mx/com/interware/msr/config/**"
+                 "**Application**, **HttpExceptionHandler**, **ExceptionFormat**, **ValidatorUtils**, **/model/**, **/config/**"
     }
 }
 
