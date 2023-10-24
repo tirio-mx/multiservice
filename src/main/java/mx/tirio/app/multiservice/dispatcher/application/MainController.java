@@ -1,5 +1,7 @@
 package mx.tirio.app.multiservice.dispatcher.application;
 
+import java.util.List;
+
 import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import mx.tirio.app.multiservice.dispatcher.domain.core.GenericService;
+import mx.tirio.app.multiservice.dispatcher.domain.model.ServiceDTO;
 
 /**
  * Main Multiservice application controller.
@@ -123,9 +126,9 @@ public class MainController {
     @RequestMapping(value = "/multiservice/list",
             produces = "application/json",
             method = { RequestMethod.GET })
-    public final ResponseEntity<String> listServices() {
+    public final ResponseEntity<List<ServiceDTO>> listServices() {
         log.info("Calling list services ...");
-        return ResponseEntity.ok(service.listServices());
+        return ResponseEntity.ok(service.getServiceList());
     }
 
 }

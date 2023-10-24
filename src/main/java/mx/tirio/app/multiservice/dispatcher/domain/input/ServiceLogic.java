@@ -1,15 +1,15 @@
-package mx.tirio.app.multiservice.dispatcher.domain.output;
+package mx.tirio.app.multiservice.dispatcher.domain.input;
 
 import java.util.List;
 
 import mx.tirio.app.multiservice.dispatcher.domain.model.ServiceDTO;
 
 /**
- * Output port ServiceLogic.
+ * Input port ServiceLogic.
  * 
  * @author Gerardo Corsan
  */
-public interface ServiceStorePort {
+public interface ServiceLogic {
 
     /**
      * Retrieve the list of services.
