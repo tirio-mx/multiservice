@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.MappedSuperclass;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,31 +22,37 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @MappedSuperclass
 @EqualsAndHashCode
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BaseRecordDTO implements Serializable {
 
-    /**
-     * Attribute serialVersionUID.
-     */
-    private static final long serialVersionUID = 3437417787288415440L;
+	/**
+	 * Attribute serialVersionUID.
+	 */
+	private static final long serialVersionUID = 3437417787288415440L;
 
-    /**
-     * Attribute description.
-     */
-    private String description;
+	/**
+	 * Attribute name.
+	 */
+	private String name;
 
-    /**
-     * Attribute creationDate.
-     */
-    private Date creationDate;
+	/**
+	 * Attribute description.
+	 */
+	private String description;
 
-    /**
-     * Attribute creationUser.
-     */
-    private String creationUser;
+	/**
+	 * Attribute creationDate.
+	 */
+	private Date creationDate;
 
-    /**
-     * Attribute status.
-     */
-    private short status;
+	/**
+	 * Attribute creationUser.
+	 */
+	private String creationUser;
+
+	/**
+	 * Attribute status.
+	 */
+	private Short status;
 
 }
