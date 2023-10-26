@@ -59,6 +59,7 @@ public class MultiserviceApplication {
      */
     @Bean(initMethod = "start", destroyMethod = "stop")
     public Server h2Server() throws SQLException {
+    	log.info("##################################################################");
         final String userDir = System.getProperty("user.dir");
         return Server.createTcpServer("-baseDir", userDir + "/data/db", "-tcp", "-tcpAllowOthers", "-tcpPort", "9092");
     }

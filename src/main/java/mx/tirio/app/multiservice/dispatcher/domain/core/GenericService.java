@@ -59,6 +59,7 @@ public class GenericService implements ServiceLogic {
         log.info("Getting data for service: {}", serviceId);
         File serviceDataFile = new File("./data/responses/" + serviceId + ".json");
         String fileData = null;
+        System.out.println("serviceDataFile;"+serviceDataFile);
 
         if (serviceDataFile.exists()) {
             try {
