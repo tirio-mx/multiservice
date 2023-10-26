@@ -113,7 +113,7 @@ public class ServiceAdapter implements ServiceStorePort {
 
 						ServiceDTO dto = ServiceDTO.builder()
 								.creationDate(fechaCreacion)
-								.descripcion(shortFileName)
+								.name(shortFileName)
 								.build();
 						dto.setStatus(null);
 						services.add(dto);

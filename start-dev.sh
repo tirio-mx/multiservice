@@ -1,3 +1,5 @@
+#!/bin/bash
+
 source .env 
 
 while read -r line; do
@@ -7,4 +9,4 @@ while read -r line; do
   fi 
 done < .env
 
-java -Dspring.profiles.active=prod -jar lib/multiservice-0.1.2.jar
+gradle bootRun --args='-Dspring.profiles.active=dev'
