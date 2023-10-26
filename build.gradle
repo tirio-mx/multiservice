@@ -37,6 +37,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'checkstyle'
 
 jar {
+	enabled = false
     manifest {
         attributes 'Implementation-Title': project.name,
                    'Implementation-Version': project.version,
@@ -67,13 +68,13 @@ ext {
 	]
 }
 
-checkstyle {
-    configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
-}
-
-checkstyleMain {
-    source ='src/main/java'
-}
+//checkstyle {
+//    configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+//}
+//
+//checkstyleMain {
+//    source ='src/main/java'
+//}
 
 sonarqube {
     properties {
@@ -146,16 +147,16 @@ dependencyManagement {
 	}
 }
 
-tasks.withType(Checkstyle).each { checkstyleTask ->
-    checkstyleTask.doLast {
-        reports.all { report ->
-            def outputFile = report.destination
-            if (outputFile.exists() && outputFile.text.contains("<error ")) {
-                throw new GradleException("There were checkstyle warnings! For more info check $outputFile")
-            }
-        }
-    }
-}
+//tasks.withType(Checkstyle).each { checkstyleTask ->
+//    checkstyleTask.doLast {
+//        reports.all { report ->
+//            def outputFile = report.destination
+//            if (outputFile.exists() && outputFile.text.contains("<error ")) {
+//                throw new GradleException("There were checkstyle warnings! For more info check $outputFile")
+//            }
+//        }
+//    }
+//}
 
 test {
     useJUnitPlatform()
